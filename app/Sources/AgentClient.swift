@@ -14,8 +14,8 @@ struct AppConfig: Codable {
     /// 内置默认值：本机真实拓扑，可被 ~/Library/Application Support/MagicSwitch/config.json 覆盖
     static let defaults = AppConfig(
         agents: [
-            "studio": AgentConfig(name: "Mac Studio", host: "192.168.0.54", port: 19821),
-            "mini": AgentConfig(name: "Mac mini", host: "192.168.10.187", port: 19821),
+            "studio": AgentConfig(name: "Mac Studio", host: "127.0.0.1", port: 19820),
+            "mini": AgentConfig(name: "Mac mini", host: "Mac-mini.local", port: 19821),
         ],
         token: "CHANGE_ME",
         pollInterval: 5

@@ -6,6 +6,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -47,7 +48,10 @@ func findBlueutil() string {
 }
 
 func runBlueutil(args ...string) (string, error) {
-	cmd := exec.Command(blueutil, args...)
+	// 超时保护：blueutil 在某些上下文（launchd）会挂死，绝不能拖住 HTTP handler
+	ctx, cancel := context.WithTimeout(context.Background(), 2500*time.Millisecond)
+	defer cancel()
+	cmd := exec.CommandContext(ctx, blueutil, args...)
 	var out bytes.Buffer
 	cmd.Stdout = &out
 	cmd.Stderr = &out
