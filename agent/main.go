@@ -7,6 +7,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"log"
 	"net"
@@ -117,13 +118,13 @@ func handleStatus(w http.ResponseWriter, r *http.Request) {
 		}(i, addr)
 	}
 	wg.Wait()
-	any := false
+	holding := false
 	for _, d := range devs {
 		if d.Connected {
-			any = true
+			holding = true
 		}
 	}
-	writeJSON(w, http.StatusOK, map[string]any{"devices": devs, "holding": any})
+	writeJSON(w, http.StatusOK, map[string]any{"devices": devs, "holding": holding})
 }
 
 // connectOne 连接单设备，带重试。
