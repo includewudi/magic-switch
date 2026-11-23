@@ -17,7 +17,7 @@ struct AppConfig: Codable {
             "studio": AgentConfig(name: "Mac Studio", host: "192.168.0.54", port: 19821),
             "mini": AgentConfig(name: "Mac mini", host: "192.168.10.187", port: 19821),
         ],
-        token: "0e773f1fb119fc962c7e9b3edf610178",
+        token: "CHANGE_ME",
         pollInterval: 5
     )
 
